@@ -12,7 +12,10 @@ const Character = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await axios.get(`http://localhost:3100/comic/${id}`)
+				const response = await axios.get(
+					// `http://localhost:3100/comic/${id}`
+					`https://marvel-backend-manuelf.herokuapp.com/comic/${id}`
+				)
 				// console.log(response.data)
 				setData(response.data)
 				setIsLoading(false)

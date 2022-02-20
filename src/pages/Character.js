@@ -12,7 +12,8 @@ const Character = () => {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get(
-					`http://localhost:3100/character/${id}`
+					// `http://localhost:3100/character/${id}`
+					`https://marvel-backend-manuelf.herokuapp.com/character/${id}`
 				)
 
 				// console.log(response.data)
