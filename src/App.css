@@ -11,13 +11,36 @@ body {
 	color: white;
 	font-family: "Lato", sans-serif;
 }
+h1 {
+	font-size: 35px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 30px;
+	color: white;
+}
+.searchInput {
+	margin: 25px auto 35px auto;
+	padding: 10px 20px;
+	text-align: left;
+	display: flex;
+	border: none;
+	border-radius: 5px;
+	width: 100%;
+	height: 55px;
+	background-color: black;
+	color: white;
+	font-size: 22px;
+}
+.searchInput:hover {
+	border: nonce;
+}
+
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
 	font-family: "Lato", sans-serif;
 }
 .header-container {
-	/* border: 1px solid white; */
 	height: 100px;
 	background-color: black;
 }
@@ -27,17 +50,14 @@ body {
 	flex-direction: row;
 }
 
-.header {
+.logo-container {
 	height: 100px;
-	border: 1px solid red;
 	display: flex;
 	align-items: center;
-	/* justify-content: center; */
 	flex-direction: row;
-	/* padding: 15px; */
 }
 
-.header img {
+.logo-container img {
 	height: 60px;
 }
 
@@ -45,10 +65,8 @@ body {
 	height: 100px;
 	display: flex;
 	flex: 1 1;
-	border: 1px solid blue;
 	display: flex;
 	align-items: center;
-	/* justify-content: center; */
 	flex-direction: row;
 	margin-left: 40px;
 }
@@ -71,12 +89,18 @@ body {
 	background-color: #ca0e15;
 }
 .cardContainer {
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-around;
 	gap: 25px;
 	margin-top: 25px;
+	text-align: center;
+}
+
+.cardContainer.carousel {
+	display: block;
 }
 
 .cardContainer a {
@@ -84,28 +108,84 @@ body {
 	text-decoration: none;
 }
 .card {
-	/* padding: 10px; */
 	border-bottom: 8px solid #ed1d24;
-	width: 250px;
+	width: 280px;
 	height: auto;
-	/* box-sizing: content-box; */
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	transition: all 0.3s ease-in;
 	border-radius: 5px;
 	background-color: black;
 }
-.card img {
+.card:hover {
+	border-bottom: 8px solid black;
+	box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 15px;
+}
+
+.card.comics {
+	background-color: #1a1b1d;
+	border-bottom: 8px solid #ed1d24;
+	width: 250px !important;
+	cursor: pointer;
+}
+.card.comics:hover {
+	border-bottom: 8px solid white;
+	box-shadow: none;
+}
+
+.card.large {
+	width: 100%;
+	border: none;
+	margin-bottom: 25px;
+}
+.card.large.comic {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding-top: 50px;
+}
+.card.large:hover {
+	box-shadow: none;
+}
+.card .picture {
 	border-radius: 5px 5px 0 0;
-	width: 250px;
-	height: 150px;
+	width: 100%;
+	height: 430px;
 	object-fit: cover;
-	/* margin-bottom: 15px; */
+}
+
+.card.large .picture {
+	width: 50%;
+	height: 350px;
+	margin-top: 50px;
+	border-radius: 10px;
+}
+
+.card.large.comic .picture {
+	width: auto;
+	height: 450px;
+	margin-top: 0;
+}
+
+.card.large .picture.large {
+	width: 100%;
+	height: 385px;
+	padding: 0;
+	margin-top: 0px;
+	border-radius: 5px 5px 0 0;
 }
 .card-name {
 	font-weight: 600;
-	/* margin-bottom: 15px; */
-	font-size: 18px;
+	font-size: 16px;
+	line-height: 1.2em;
+	padding: 0 20px;
+}
+
+.card-name.large {
+	font-size: 30px;
+	background-color: #1a1b1d;
+	border-radius: 5px;
+	margin-bottom: 25px;
+	padding: 15px 25px;
 }
 .card-content {
 	display: flex;
@@ -113,15 +193,79 @@ body {
 	align-items: center;
 	margin: 20px 0;
 }
+.card-content.large {
+	padding: 50px;
+	margin: 0;
+}
 .card-desc {
-	/* margin-top: 20px; */
 	font-family: "Lato", sans-serif;
-	font-size: 12px;
+	font-size: 13px;
 	text-align: center;
 	line-height: 1.3em;
 	padding: 10px 10px 0 10px;
-	/* margin-bottom: 10px; */
+}
+.card-desc.large {
+	font-size: 22px;
+	margin-bottom: 20px;
 }
 .navPage {
-	margin-bottom: 50px;
+	margin: 30px 0;
+	display: flex;
+	justify-content: center;
+}
+
+.navPage > div {
+	display: flex;
+	gap: 15px;
+}
+
+.navPage button {
+	padding: 10px 25px;
+	font-family: "Lato", sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	line-height: 15px;
+	border-radius: 5px;
+	background-color: black;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+.navPage button:first-child {
+}
+.navPage button:hover {
+	background-color: #ca0e15;
+}
+
+.line {
+	cursor: pointer;
+	background-color: lightblue;
+	margin: 4px;
+}
+
+.pagination {
+	display: flex;
+	margin: 50px 0;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.pagination li {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	background-color: black;
+	font-size: 15px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.pagination li:hover,
+.pagination .active {
+	background-color: #ed1d24;
+}
+
+.pagination a {
 }

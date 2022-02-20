@@ -1,21 +1,31 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import Characters from "../components/Characters"
+import CharacterCards from "../components/CharacterCards"
+import ReactPaginate from "react-paginate"
 
 const Home = () => {
 	const [data, setData] = useState()
 	const [isLoading, setIsLoading] = useState(true)
-	const [skip, setSkip] = useState(0)
-	// const skip = 2
-	console.log(skip)
+
+	const [page, setPage] = useState(1)
+	const [search, setSearch] = useState("")
+	const [pageCount, setPageCount] = useState(1)
+
+	const handlePageClick = (event) => {
+		console.log(event.selected)
+		setPage(event.selected + 1)
+	}
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				// requête axios à mon serveur (pas à l'API Marvel)
-				const response = await axios.post("http://localhost:3100/characters", {
-					skip: skip,
-				})
-				console.log(response.data)
+				const response = await axios.get(
+					`http://localhost:3100/characters?page=${page}&search=${search}`
+				)
+
+				// console.log(response.data)
+				const limit = response.data.limit
+				setPageCount(Math.ceil(Number(response.data.count) / limit))
 				setData(response.data)
 				setIsLoading(false)
 			} catch (error) {
@@ -24,7 +34,7 @@ const Home = () => {
 			}
 		}
 		fetchData()
-	}, [skip])
+	}, [page, search])
 
 	return (
 		<div className="main">
@@ -33,10 +43,47 @@ const Home = () => {
 					<div>En cours de chargement...</div>
 				) : (
 					<>
-						<Characters data={data} />
-						<div className="navPage">
-							<button>Page précédente</button>
-							<button onClick={() => setSkip(skip + 100)}>Page suivante</button>
+						<h1>Personnages</h1>
+						<div className="container">
+							<div className="search-container">
+								<input
+									placeholder="Search..."
+									className="searchInput"
+									type="text"
+									value={search}
+									onChange={(event) => {
+										setSearch(event.target.value)
+										setPage(1)
+									}}
+								/>
+							</div>
+						</div>
+						<div className="container">
+							<div className="pagination-container">
+								<ReactPaginate
+									previousLabel={"<"}
+									nextLabel={">"}
+									pageCount={pageCount}
+									pageRangeDisplayed={4}
+									onPageChange={handlePageClick}
+									containerClassName={"pagination"}
+									activeClassName={"active"}
+								/>
+							</div>
+						</div>
+						<CharacterCards data={data} />
+						<div className="container">
+							<div className="pagination-container">
+								<ReactPaginate
+									previousLabel={"<"}
+									nextLabel={">"}
+									pageCount={pageCount}
+									pageRangeDisplayed={4}
+									onPageChange={handlePageClick}
+									containerClassName={"pagination"}
+									activeClassName={"active"}
+								/>
+							</div>
 						</div>
 					</>
 				)}
