@@ -269,3 +269,24 @@ h1 {
 
 .pagination a {
 }
+
+.btn-favoris {
+	width: 50px;
+	height: 50px;
+	background-color: red;
+	position: absolute;
+	right: 0;
+	cursor: pointer;
+}
+.btn-favoris2 {
+	width: 50px;
+	height: 50px;
+	background-color: blue;
+	position: absolute;
+	right: 0;
+	cursor: pointer;
+}
+
+.container-favoris {
+	position: relative;
+}

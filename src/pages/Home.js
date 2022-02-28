@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import CharacterCards from "../components/CharacterCards"
 import ReactPaginate from "react-paginate"
-
+import Loader from "react-js-loader"
 const Home = () => {
 	const [data, setData] = useState()
 	const [isLoading, setIsLoading] = useState(true)
@@ -41,7 +41,15 @@ const Home = () => {
 		<div className="main">
 			<div className="container">
 				{isLoading ? (
-					<div>En cours de chargement...</div>
+					<div>
+						<Loader
+							type="spinner-default"
+							bgColor={"#FFFFFF"}
+							title={"En cours de chargement"}
+							color={"#FFFFFF"}
+							size={100}
+						/>
+					</div>
 				) : (
 					<>
 						<h1>Personnages</h1>
