@@ -1,82 +1,41 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
-// import Cookies from "js-cookie"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faHeart } from "@fortawesome/free-solid-svg-icons"
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons"
 
 const CharacterCards = ({ data }) => {
-	const [favs, setFavs] = useState(
-		JSON.parse(localStorage.getItem("favToken")) || []
-	)
 	const [favsId, setFavsId] = useState(
-		JSON.parse(localStorage.getItem("favTokenId")) || []
+		JSON.parse(localStorage.getItem("favIdToken")) || []
 	)
 
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		try {
-	// 			const responseToken =
-	// 				JSON.parse(localStorage.getItem("favTokenId")) || []
-	// 			// console.log("response :", responseToken)
-	// 			// setResponse(responseToken)
-	// 			setFavsId(responseToken)
-	// 			// setIsLoading(false)
-	// 		} catch (error) {
-	// 			console.log(error.message)
-	// 			console.log(error.response)
-	// 		}
-	// 	}
-	// 	fetchData()
-	// }, [])
+	const setFav = (characterId) => {
+		console.log(characterId)
 
-	const setFav = (character, characterId) => {
-		// CHARACTER
-		// console.log("character", character)
-		const newFavs = [...favs]
-		// for (var i = 0; i <= favs.length; i++) {
-		// 	console.log(newFavs.length)
-		// 	if (favs[i] !== character) {
-		// 		// console.log(newFavs[i]._id)
-		// 		newFavs.push(character)
-		// 	}
-		// }
-		newFavs.push(character)
-		setFavs(newFavs)
-		localStorage.setItem("favToken", JSON.stringify(newFavs))
-
-		// CHARACTER ID
-		// console.log("characterId", characterId)
 		const newFavsId = [...favsId]
-		newFavsId.push(characterId)
-		setFavsId(newFavsId)
-		localStorage.setItem("favTokenId", JSON.stringify(newFavsId))
+
+		for (var i = 0; i <= newFavsId.length; i++) {
+			// console.log(newFavsId)
+			if (favsId.indexOf(characterId) === -1) {
+				newFavsId.push(characterId)
+				setFavsId(newFavsId)
+				localStorage.setItem("favIdToken", JSON.stringify(newFavsId))
+				break
+			} else {
+				console.log("passage")
+				const characterIndex = favsId.indexOf(characterId)
+				newFavsId.splice(characterIndex, 1)
+				setFavsId(newFavsId)
+				localStorage.setItem("favIdToken", JSON.stringify(newFavsId))
+				break
+			}
+		}
 	}
 
-	const removeFav = (character, characterId) => {
-		// CHARACTER
-		// console.log("character", character)
-
-		const newFavs = [...favs]
-		const characterIndex = newFavs.indexOf(character)
-		console.log("characterIndex", characterIndex)
-		newFavs.splice(characterIndex, 1)
-		setFavs(newFavs)
-		localStorage.setItem("favToken", JSON.stringify(newFavs))
-
-		// CHARACTER ID
-		// console.log("characterId", characterId)
-		const newFavsId = [...favsId]
-		const characterIdIndex = newFavsId.indexOf(characterId)
-		newFavsId.splice(characterIdIndex, 1)
-		setFavsId(newFavsId)
-		localStorage.setItem("favTokenId", JSON.stringify(newFavsId))
-	}
-
-	console.log("token ==>", favs)
-	// console.log("response ==>", response)
-
+	// console.log("token ==>", favsId)
 	return (
 		<div className="cardContainer">
 			{data.results.map((character, index) => {
-				// console.log("character ==>", character)
 				let picture = character.thumbnail
 				picture = `${picture.path}.${picture.extension}`
 				return (
@@ -84,18 +43,29 @@ const CharacterCards = ({ data }) => {
 						{favsId.indexOf(character._id) === -1 ? (
 							<span
 								onClick={() => {
-									setFav(character, character._id)
-									// setFavId(character._id)
+									setFav(character._id)
 								}}
 								className="btn-favoris"
-							></span>
+							>
+								<FontAwesomeIcon
+									icon={faHeartRegular}
+									size="2x"
+									className="icone-fav"
+								/>
+							</span>
 						) : (
 							<span
 								onClick={() => {
-									removeFav(character, character._id)
+									setFav(character._id)
 								}}
-								className="btn-favoris2"
-							></span>
+								className="btn-favoris active"
+							>
+								<FontAwesomeIcon
+									icon={faHeart}
+									size="2x"
+									className="icone-fav active"
+								/>
+							</span>
 						)}
 						<Link to={`/character/${character._id}`}>
 							<div className="card">
