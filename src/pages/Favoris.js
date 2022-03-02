@@ -21,13 +21,13 @@ const Favoris = () => {
 					const response = await axios.get(
 						`https://marvel-backend-manuelf.herokuapp.com/character/${dataToken[i]}`
 					)
-					console.log(response.data)
+					// console.log(response.data)
 					newData.push(response.data)
-					console.log(newData)
+					// console.log(newData)
 				}
 				setData(newData)
 				// console.log(data)
-				console.log("dataToken", dataToken)
+				// console.log("dataToken", dataToken)
 				setIsLoading(false)
 			} catch (error) {
 				console.log(error.message)
@@ -46,8 +46,7 @@ const Favoris = () => {
 			newdataToken.splice(characterIndex, 1)
 			setDataToken(newdataToken)
 			localStorage.setItem("favIdToken", JSON.stringify(newdataToken))
-			const cardContainer =
-				event.target.parentNode.parentNode.parentNode.parentNode
+			const cardContainer = event.target.parentNode.parentNode.parentNode
 			cardContainer.style.display = "none"
 			break
 		}
@@ -70,7 +69,7 @@ const Favoris = () => {
 				<div className="container">
 					<div className="cardContainer">
 						{data.map((item, index) => {
-							console.log(item)
+							// console.log(item)
 							let picture = item.thumbnail
 							picture = `${picture.path}.${picture.extension}`
 
@@ -78,16 +77,15 @@ const Favoris = () => {
 								<>
 									<Link to={`/character/${item._id}`}>
 										<div className="card relative" id="card">
-											<span className="btn-favoris active">
-												<FontAwesomeIcon
-													onClick={(event) => {
-														setFav(item._id, event)
-													}}
-													icon={faHeart}
-													size="2x"
-													className="icone-fav active"
-												/>
-											</span>
+											<FontAwesomeIcon
+												onClick={(event) => {
+													setFav(item._id, event)
+												}}
+												icon={faHeart}
+												size="2x"
+												className="icone-fav active"
+											/>
+
 											<img className="picture" src={picture} alt="" />
 											<div className="card-content">
 												<p className="card-name">{item.name}</p>
