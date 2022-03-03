@@ -42,16 +42,20 @@ const Favoris = () => {
 		const newdataToken = [...dataToken]
 		for (var i = 0; i <= newdataToken.length; i++) {
 			event.preventDefault()
-			event.stopPropagation()
+			// event.stopPropagation()
 			const characterIndex = dataToken.indexOf(characterId)
 			newdataToken.splice(characterIndex, 1)
 			setDataToken(newdataToken)
 			localStorage.setItem("favIdToken", JSON.stringify(newdataToken))
+
 			const cardContainer =
 				event.target.parentNode.parentNode.parentNode.parentNode
+			const cardContainer2 = event.target.parentNode.parentNode.parentNode
 			// console.log(cardContainer)
 			if (cardContainer.classList.contains("cardElem")) {
 				cardContainer.style.display = "none"
+			} else {
+				cardContainer2.style.display = "none"
 			}
 
 			break

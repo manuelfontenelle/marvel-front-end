@@ -10,7 +10,7 @@ const CharacterCards = ({ data }) => {
 	)
 
 	const setFav = (characterId) => {
-		console.log(characterId)
+		// console.log(characterId)
 
 		const newFavsId = [...favsId]
 
