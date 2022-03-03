@@ -49,9 +49,8 @@ const Favoris = () => {
 			localStorage.setItem("favIdToken", JSON.stringify(newdataToken))
 			const cardContainer =
 				event.target.parentNode.parentNode.parentNode.parentNode
-			console.log(cardContainer)
+			// console.log(cardContainer)
 			if (cardContainer.classList.contains("cardElem")) {
-				console.log("test")
 				cardContainer.style.display = "none"
 			}
 
