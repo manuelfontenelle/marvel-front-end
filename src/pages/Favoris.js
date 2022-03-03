@@ -42,12 +42,19 @@ const Favoris = () => {
 		const newdataToken = [...dataToken]
 		for (var i = 0; i <= newdataToken.length; i++) {
 			event.preventDefault()
+			event.stopPropagation()
 			const characterIndex = dataToken.indexOf(characterId)
 			newdataToken.splice(characterIndex, 1)
 			setDataToken(newdataToken)
 			localStorage.setItem("favIdToken", JSON.stringify(newdataToken))
-			const cardContainer = event.target.parentNode.parentNode.parentNode
-			cardContainer.style.display = "none"
+			const cardContainer =
+				event.target.parentNode.parentNode.parentNode.parentNode
+			console.log(cardContainer)
+			if (cardContainer.classList.contains("cardElem")) {
+				console.log("test")
+				cardContainer.style.display = "none"
+			}
+
 			break
 		}
 	}
@@ -75,16 +82,20 @@ const Favoris = () => {
 
 							return (
 								<>
-									<Link to={`/character/${item._id}`}>
-										<div className="card relative" id="card">
-											<FontAwesomeIcon
+									<Link to={`/character/${item._id}`} className="cardElem">
+										<div className="card relative">
+											<div
+												className="btn-favoris"
 												onClick={(event) => {
 													setFav(item._id, event)
 												}}
-												icon={faHeart}
-												size="2x"
-												className="icone-fav active"
-											/>
+											>
+												<FontAwesomeIcon
+													icon={faHeart}
+													size="2x"
+													className="icone-fav active"
+												/>
+											</div>
 
 											<img className="picture" src={picture} alt="" />
 											<div className="card-content">
