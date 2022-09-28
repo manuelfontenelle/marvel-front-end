@@ -3,11 +3,11 @@ import axios from "axios"
 import ComicCards from "../components/ComicCards"
 import ReactPaginate from "react-paginate"
 
-const Comics = () => {
+const Comics = ({ setPage, page }) => {
 	const [data, setData] = useState()
 	const [isLoading, setIsLoading] = useState(true)
 
-	const [page, setPage] = useState(1)
+	// const [page, setPage] = useState(1)
 	const [search, setSearch] = useState("")
 	const [pageCount, setPageCount] = useState(1)
 
@@ -70,6 +70,7 @@ const Comics = () => {
 									onPageChange={handlePageClick}
 									containerClassName={"pagination"}
 									activeClassName={"active"}
+									forcePage={page - 1} // retour à la page précédente si click sur précédent
 								/>
 							</div>
 						</div>
@@ -84,6 +85,7 @@ const Comics = () => {
 									onPageChange={handlePageClick}
 									containerClassName={"pagination"}
 									activeClassName={"active"}
+									forcePage={page - 1} // retour à la page précédente si click sur précédent
 								/>
 							</div>
 						</div>

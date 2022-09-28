@@ -3,11 +3,11 @@ import axios from "axios"
 import CharacterCards from "../components/CharacterCards"
 import ReactPaginate from "react-paginate"
 import Loader from "react-js-loader"
-const Home = () => {
+
+const Home = ({ setPage, page }) => {
 	const [data, setData] = useState()
 	const [isLoading, setIsLoading] = useState(true)
-
-	const [page, setPage] = useState(1)
+	// const [page, setPage] = useState(1)
 	const [search, setSearch] = useState("")
 	const [pageCount, setPageCount] = useState(1)
 
@@ -24,7 +24,7 @@ const Home = () => {
 					// `http://localhost:3100/characters?page=${page}&search=${search}`
 				)
 
-				// console.log(response.data)
+				console.log(response.data)
 				const limit = response.data.limit
 				setPageCount(Math.ceil(Number(response.data.count) / limit))
 				setData(response.data)
@@ -73,10 +73,11 @@ const Home = () => {
 									previousLabel={"<"}
 									nextLabel={">"}
 									pageCount={pageCount}
-									pageRangeDisplayed={4}
+									pageRangeDisplayed={2}
 									onPageChange={handlePageClick}
 									containerClassName={"pagination"}
 									activeClassName={"active"}
+									forcePage={page - 1} // retour à la page précédente si click sur précédent
 								/>
 							</div>
 						</div>
@@ -91,6 +92,7 @@ const Home = () => {
 									onPageChange={handlePageClick}
 									containerClassName={"pagination"}
 									activeClassName={"active"}
+									forcePage={page - 1} // retour à la page précédente si click sur précédent
 								/>
 							</div>
 						</div>

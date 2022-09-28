@@ -254,24 +254,32 @@ h1 {
 	gap: 20px;
 }
 
-.pagination li {
+.pagination .active {
+	border-radius: 5px;
+}
+.pagination li a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 40px;
-	height: 40px;
+	padding: 20px;
 	background-color: black;
 	font-size: 15px;
 	border-radius: 5px;
 	cursor: pointer;
+	color: white;
 }
-.pagination li:hover,
-.pagination .active {
+.pagination .active a {
 	background-color: #ed1d24;
+	border-radius: 5px;
 }
 
-.pagination a {
+.pagination li a:hover,
+.pagination li.active {
+	background-color: #ed1d24;
 }
+/* 
+.pagination a {
+} */
 
 .btn-favoris {
 	/* width: 60px;
@@ -306,6 +314,6 @@ h1 {
 	color: #fff;
 }
 
-.container-favoris {
+.container-character {
 	position: relative;
 }

@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick-theme.css"
 import "./App.css"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { useState } from "react"
 
 // Logo
 import Logo from "./assets/logo.svg"
@@ -16,14 +17,22 @@ import Comic from "./pages/Comic"
 import Favoris from "./pages/Favoris"
 
 function App() {
+	const [page, setPage] = useState(1)
+	const [page2, setPage2] = useState(1)
 	return (
 		<Router>
 			<Header logo={Logo} />
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/characters" element={<Home />} />
+				<Route path="/" element={<Home page={page} setPage={setPage} />} />
+				<Route
+					path="/characters"
+					element={<Home page={page} setPage={setPage} />}
+				/>
 				<Route path="/character/:id" element={<Character />} />
-				<Route path="/comics" element={<Comics />} />
+				<Route
+					path="/comics"
+					element={<Comics page={page2} setPage={setPage2} />}
+				/>
 				<Route path="/comic/:id" element={<Comic />} />
 				<Route path="/favoris" element={<Favoris />} />
 			</Routes>

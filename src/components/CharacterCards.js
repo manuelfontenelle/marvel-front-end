@@ -11,14 +11,14 @@ const CharacterCards = ({ data }) => {
 
 	const setFav = (characterId) => {
 		// console.log(characterId)
-
 		const newFavsId = [...favsId]
 
-		for (var i = 0; i <= newFavsId.length; i++) {
-			// console.log(newFavsId)
+		for (var i = 0; i <= favsId.length; i++) {
+			// console.log(favsId)
 			if (favsId.indexOf(characterId) === -1) {
 				newFavsId.push(characterId)
 				setFavsId(newFavsId)
+				// console.log(newFavsId)
 				localStorage.setItem("favIdToken", JSON.stringify(newFavsId))
 				break
 			} else {
@@ -39,7 +39,7 @@ const CharacterCards = ({ data }) => {
 				let picture = character.thumbnail
 				picture = `${picture.path}.${picture.extension}`
 				return (
-					<div key={character._id} className="container-favoris">
+					<div key={character._id} className="container-character">
 						{favsId.indexOf(character._id) === -1 ? (
 							<span
 								onClick={() => {

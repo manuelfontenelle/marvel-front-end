@@ -26,7 +26,7 @@ const Favoris = () => {
 					// console.log(newData)
 				}
 				setData(newData)
-				// console.log(data)
+				console.log(data)
 				// console.log("dataToken", dataToken)
 				setIsLoading(false)
 			} catch (error) {
