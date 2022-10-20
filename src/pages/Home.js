@@ -73,7 +73,8 @@ const Home = ({ setPage, page }) => {
 									previousLabel={"<"}
 									nextLabel={">"}
 									pageCount={pageCount}
-									pageRangeDisplayed={2}
+									pageRangeDisplayed={3}
+									marginPagesDisplayed={2}
 									onPageChange={handlePageClick}
 									containerClassName={"pagination"}
 									activeClassName={"active"}
@@ -88,7 +89,8 @@ const Home = ({ setPage, page }) => {
 									previousLabel={"<"}
 									nextLabel={">"}
 									pageCount={pageCount}
-									pageRangeDisplayed={4}
+									pageRangeDisplayed={3}
+									marginPagesDisplayed={2}
 									onPageChange={handlePageClick}
 									containerClassName={"pagination"}
 									activeClassName={"active"}

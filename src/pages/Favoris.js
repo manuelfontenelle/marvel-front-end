@@ -7,7 +7,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons"
 
 const Favoris = () => {
 	const [data, setData] = useState([])
-	const [dataToken, setDataToken] = useState(
+	const [favsId, setFavsId] = useState(
 		JSON.parse(localStorage.getItem("favIdToken")) || []
 	)
 	const [isLoading, setIsLoading] = useState(true)
@@ -15,11 +15,11 @@ const Favoris = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				// setDataToken(JSON.parse(localStorage.getItem("favIdToken")) || [])
+				// setFavsId(JSON.parse(localStorage.getItem("favIdToken")) || [])
 				const newData = [...data]
-				for (var i = 0; i < dataToken.length; i++) {
+				for (var i = 0; i < favsId.length; i++) {
 					const response = await axios.get(
-						`https://marvel-backend-manuelf.herokuapp.com/character/${dataToken[i]}`
+						`https://marvel-backend-manuelf.herokuapp.com/character/${favsId[i]}`
 					)
 					// console.log(response.data)
 					newData.push(response.data)
@@ -27,7 +27,6 @@ const Favoris = () => {
 				}
 				setData(newData)
 				console.log(data)
-				// console.log("dataToken", dataToken)
 				setIsLoading(false)
 			} catch (error) {
 				console.log(error.message)
@@ -38,26 +37,19 @@ const Favoris = () => {
 	}, [])
 
 	const setFav = (characterId, event) => {
+		event.preventDefault()
 		// console.log(characterId)
-		const newdataToken = [...dataToken]
-		for (var i = 0; i <= newdataToken.length; i++) {
-			event.preventDefault()
+		const newFavsId = [...favsId]
+		for (var i = 0; i <= newFavsId.length; i++) {
 			// event.stopPropagation()
-			const characterIndex = dataToken.indexOf(characterId)
-			newdataToken.splice(characterIndex, 1)
-			setDataToken(newdataToken)
-			localStorage.setItem("favIdToken", JSON.stringify(newdataToken))
+			const characterIndex = favsId.indexOf(characterId)
+			newFavsId.splice(characterIndex, 1)
+			setFavsId(newFavsId)
+			localStorage.setItem("favIdToken", JSON.stringify(newFavsId))
 
 			const cardContainer =
 				event.target.parentNode.parentNode.parentNode.parentNode
-			const cardContainer2 = event.target.parentNode.parentNode.parentNode
-			// console.log(cardContainer)
-			if (cardContainer.classList.contains("cardElem")) {
-				cardContainer.style.display = "none"
-			} else {
-				cardContainer2.style.display = "none"
-			}
-
+			cardContainer.style.display = "none"
 			break
 		}
 	}
@@ -85,7 +77,7 @@ const Favoris = () => {
 
 							return (
 								<>
-									<Link to={`/character/${item._id}`} className="cardElem">
+									<Link to={`/character/${item._id}`} className="cardFav">
 										<div className="card relative">
 											<div
 												className="btn-favoris"

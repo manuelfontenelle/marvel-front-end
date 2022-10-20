@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import ComicCards from "../components/ComicCards"
 import ReactPaginate from "react-paginate"
+import Loader from "react-js-loader"
 
 const Comics = ({ setPage, page }) => {
 	const [data, setData] = useState()
@@ -41,7 +42,15 @@ const Comics = ({ setPage, page }) => {
 		<div className="main">
 			<div className="container">
 				{isLoading ? (
-					<div>En cours de chargement...</div>
+					<div>
+						<Loader
+							type="spinner-default"
+							bgColor={"#FFFFFF"}
+							title={"En cours de chargement"}
+							color={"#FFFFFF"}
+							size={100}
+						/>
+					</div>
 				) : (
 					<>
 						<h1>Comics</h1>
