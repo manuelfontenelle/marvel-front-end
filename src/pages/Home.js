@@ -53,20 +53,20 @@ const Home = ({ setPage, page }) => {
 				) : (
 					<>
 						<h1>Personnages</h1>
-						<div className="container">
-							<div className="search-container">
-								<input
-									placeholder="Search..."
-									className="searchInput"
-									type="text"
-									value={search}
-									onChange={(event) => {
-										setSearch(event.target.value)
-										setPage(1)
-									}}
-								/>
-							</div>
+
+						<div className="search-container">
+							<input
+								placeholder="Search..."
+								className="searchInput"
+								type="text"
+								value={search}
+								onChange={(event) => {
+									setSearch(event.target.value)
+									setPage(1)
+								}}
+							/>
 						</div>
+
 						<div className="container">
 							<div className="pagination-container">
 								<ReactPaginate

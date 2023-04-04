@@ -77,8 +77,11 @@ const Favoris = () => {
 
 							return (
 								<>
-									<Link to={`/character/${item._id}`} className="cardFav">
-										<div className="card relative">
+									<Link
+										to={`/character/${item._id}`}
+										className="cardFav container-character "
+									>
+										<div className="card relative ">
 											<div
 												className="btn-favoris"
 												onClick={(event) => {

@@ -6,7 +6,7 @@ const ComicCards = ({ data }) => {
 				let picture = comic.thumbnail
 				picture = `${picture.path}.${picture.extension}`
 				return (
-					<div key={comic._id}>
+					<div key={comic._id} className="container-character">
 						<Link to={`/comic/${comic._id}`}>
 							<div className="card">
 								<img className="picture" src={picture} alt="" />
