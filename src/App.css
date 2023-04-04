@@ -261,8 +261,7 @@ h1 {
 	border: none;
 	cursor: pointer;
 }
-.navPage button:first-child {
-}
+
 .navPage button:hover {
 	background-color: #ca0e15;
 }
